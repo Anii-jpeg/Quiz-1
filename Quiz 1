@@ -1,0 +1,54 @@
+import java.util.Scanner;
+
+public class StudentEnrollment {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Get student information
+        System.out.print("Enter student name: ");
+        String studentName = scanner.nextLine();
+
+        System.out.print("Enter course: ");
+        String course = scanner.nextLine();
+
+        System.out.print("Enter course code: ");
+        String courseCode = scanner.nextLine();
+
+        System.out.print("Enter number of units (maximum 10): ");
+        int numberOfUnits = scanner.nextInt();
+
+        // Validate number of units
+        if (numberOfUnits < 1 || numberOfUnits > 10) {
+            System.out.println("Invalid number of units. Please enter a number between 1 and 10.");
+            return;
+        }
+
+        // Calculate enrollment fee
+        int enrollmentFee = calculateEnrollmentFee(numberOfUnits);
+
+        // Output student information and enrollment fee
+        System.out.println("\nStudent Name: " + studentName);
+        System.out.println("Total Enrollment Fee: " + enrollmentFee);
+
+        // Get payment amount
+        System.out.print("Enter payment amount: ");
+        int paymentAmount = scanner.nextInt();
+
+        // Check payment status
+        if (paymentAmount == enrollmentFee) {
+            System.out.println("Fully Paid");
+        } else if (paymentAmount < enrollmentFee) {
+            System.out.println("Partial Payment");
+            System.out.println("Amount Paid: " + paymentAmount);
+        } else {
+            System.out.println("Excess Payment");
+            System.out.println("Amount Paid: " + paymentAmount);
+        }
+    }
+
+    // Method to calculate enrollment fee based on number of units
+    public static int calculateEnrollmentFee(int numberOfUnits) {
+        int feePerUnit = 1000;
+        return numberOfUnits * feePerUnit;
+    }
+}
